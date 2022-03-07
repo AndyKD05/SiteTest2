@@ -89,7 +89,7 @@
 
           </div>
           <div class="col-lg-8 mx-auto">
-            <p class="texto text-faded mb-5">Nous sommes une entreprise de préstation de services. Passez vos vacances dans le Queyras avec nous !</p>
+            <p class="texto text-faded mb-5">Nous sommes une entreprise de prestation de services. Passez vos vacances dans le Queyras avec nous !</p>
             <a class="btn btn-primary btn-xl" href="index3.html">Apprenez-en plus sur nous !</a>
           </div>
         </div>
