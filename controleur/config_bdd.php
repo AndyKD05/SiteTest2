@@ -1,7 +1,7 @@
 <?php   
 
 	$serveur = $_SERVER['SERVER_NAME']; 
-	if ($_SERVER['SERVER_NAME']=="127.0.0.1" || $_SERVER['SERVER_NAME']=="1localhost")
+	if ($_SERVER['SERVER_NAME']=="127.0.0.1" || $_SERVER['SERVER_NAME']=="localhost")
 	   { 
 		$serveur ="localhost:3307";
 		$bdd = "neigesoleil";
