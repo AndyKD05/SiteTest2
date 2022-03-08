@@ -5,7 +5,6 @@
 	$unControleur = new Controleur($serveur,$bdd,$user,$mdp);
 ?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,19 +25,26 @@
 </head>
 <body>
 	<center>
-		<h1> Neige et soleil</h1>
+		<h1>Neige et soleil</h1>
 		<?php 
-		if (! isset($_SESSION['email']))
+		if (! isset($_SESSION['email'])) // isset Détermine si une variable est déclarée et est différente de null
 		{
-			require_once("vue/vue_connexion_emp.php");
+			echo "<br>-------------- _SESSION vide" ; 
+
+			require_once("vue/vue_connexion_emp.php"); // vérifie si le fichier a déjà été inclus,
 		}
-		if(isset($_POST['seConnecter']))
+		if(isset($_POST['seConnecter'])) 
 		{
-			$email= $_POST['email'].'|emp';
-			$mdp= $_POST['mdp'];
+			echo "<br>--------------seConnecter"; 
+
+			//$email= $_POST['email'].'|emp'; 
+			$email= $_POST['email']; 
+			$mdp= $_POST['mdp']; 
 			$where = array('email'=>$email ,'mdp'=>$mdp);
 			$unControleur->setTable("user");
 			$unUser = $unControleur->selectWhere($where);
+			echo "<br>--------------unUser : ".$unUser['email']; 
+
 			if(isset($unUser['email']))
 			{
 				$_SESSION['email'] = $unUser['email'];
@@ -52,8 +58,8 @@
 		}
 		if(isset($_SESSION['email']))
 		{
+			echo "<br/><h1>SESSION : ".$_SESSION['email']."</h1><br/>";
 			echo '
-		
 
 		<a href="connexion.php?page=0">
 			<img src="images/home.png" height="100" width="100">

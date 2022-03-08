@@ -5,9 +5,11 @@
 
 		public function __construct ($serveur, $bdd, $user,$mdp)
 		{
+			echo "<br>--------------TRACE: __construct" ;
+
 			$this->unPdo = null;
 			try{
-				$this->unPdo = new PDO("mysql:host=".$serveur.";dbname=".$bdd,$user,$mdp);
+				$this->unPdo = new PDO("mysql:host=".$serveur.";dbname=".$bdd,$user,$mdp);  
 			}
 			catch(PDOException $exp)
 			{
@@ -16,12 +18,13 @@
 		}
 
 		public function setTable($uneTable)
-		{
+		{ 
 			$this->uneTable = $uneTable;
 		}
 
 		public function selectAll()
 		{
+			echo "<br>--------------TRACE: selectAll" ;
 			$requete="select * from ".$this->uneTable." ; ";
 			$select= $this->unPdo->prepare($requete);
 			$select->execute();
@@ -56,7 +59,7 @@
 			$insert->execute($donnees);
 		}
 		public function selectSearch($tab,$mot)
-		{
+		{ 
 			$donnees = array(":mot"=>"%".$mot."%");
 			$champs=array();
 			foreach($tab as $cle)
@@ -91,18 +94,25 @@
 			return $select->fetch();
 		}
 		public function selectWhere($where)
-		{
+		{ 
 			$donnees = array();
 			$champs=array();
 			foreach($where as $cle => $valeur)
 			{
 				$champs[] = $cle." = :".$cle;
-				$donnees[":".$cle] = $valeur;
+				$donnees[":".$cle] = $valeur; 
+			 echo "<br> cle    : ".$cle;
+			 echo ", valeur : ".$valeur ;  
 			}
 			$chaineWhere = implode(" and ", $champs);
-			$requete="select * from ".$this->uneTable." where ".$chaineWhere;
+			$requete="select * from ".$this->uneTable." where ".$chaineWhere; 
 			$select=$this->unPdo->prepare($requete);
+			
+			echo "<br>*******select  : ".$select -> queryString  ;  
 			$select->execute($donnees);
+			$nb = $select ->rowCount();  
+			echo "<br> ------------- ".$nb." trouvé(s) ";   
+			 
 			return $select->fetch();
 		}
 		public function update($tab,$where)
