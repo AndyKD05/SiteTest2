@@ -1,5 +1,6 @@
 <h2>Gestion des offres</h2>
-<?php
+<?php 
+ 
 if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 {
 	$unControleur->setTable("habitation");
@@ -64,7 +65,9 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 		header("location: index.php?page=2");
 	}
 }
+
 	$unControleur->setTable("habitation");
+
 	if (isset($_POST['Rechercher']))
 	{
 		$mot=$_POST['mot'];
