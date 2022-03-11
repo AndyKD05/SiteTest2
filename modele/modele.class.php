@@ -4,9 +4,7 @@
 		private $unPdo, $uneTable ;
 
 		public function __construct ($serveur, $bdd, $user,$mdp)
-		{
-			echo "<br>--------------TRACE: __construct" ;
-
+		{			
 			$this->unPdo = null;
 			try{
 				$this->unPdo = new PDO("mysql:host=".$serveur.";dbname=".$bdd,$user,$mdp);  
@@ -24,7 +22,6 @@
 
 		public function selectAll()
 		{
-			echo "<br>--------------TRACE: selectAll" ;
 			$requete="select * from ".$this->uneTable." ; ";
 			$select= $this->unPdo->prepare($requete);
 			$select->execute();
@@ -108,10 +105,12 @@
 			$requete="select * from ".$this->uneTable." where ".$chaineWhere; 
 			$select=$this->unPdo->prepare($requete);
 			
-			echo "<br>*******select  : ".$select -> queryString  ;  
+			//echo "<br>*******select  : ".$select -> queryString  ;  
+
 			$select->execute($donnees);
 			$nb = $select ->rowCount();  
-			echo "<br> ------------- ".$nb." trouvé(s) ";   
+
+			//echo "<br> ------------- ".$nb." trouvé(s) ";   
 			 
 			return $select->fetch();
 		}

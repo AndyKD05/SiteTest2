@@ -39,7 +39,7 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="">Nos Offres</a>
+                <a class="nav-link" href="connexion.php?page=2">Nos Offres</a>
             </li>
             
             <li class="nav-item">
