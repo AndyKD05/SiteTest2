@@ -21,6 +21,13 @@
 	<!-- Custom styles for this template -->
 	<link href="css/style.css" rel="stylesheet">
 	<link href="css/style5.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+</head>
+
 	<title>Gestion Neige et soleil</title>
 </head>
 <body>
@@ -29,29 +36,23 @@
 		<?php 
 		if (! isset($_SESSION['email'])) // isset Détermine si une variable est déclarée et est différente de null
 		{
-			echo "<br>-------------- _SESSION vide" ; 
-
-			require_once("vue/vue_connexion_emp.php"); // vérifie si le fichier a déjà été inclus,
+						require_once("vue/vue_connexion_emp.php"); // vérifie si le fichier a déjà été inclus,
 		}
 		if(isset($_POST['seConnecter'])) 
 		{
-			echo "<br>--------------seConnecter"; 
-
 			//$email= $_POST['email'].'|emp'; 
 			$email= $_POST['email']; 
 			$mdp= $_POST['mdp']; 
 			$where = array('email'=>$email ,'mdp'=>$mdp);
 			$unControleur->setTable("user");
-			$unUser = $unControleur->selectWhere($where);
-			echo "<br>--------------unUser : ".$unUser['email']; 
-
+			$unUser = $unControleur->selectWhere($where);			
 			if(isset($unUser['email']))
-			{
+			{ 
 				$_SESSION['email'] = $unUser['email'];
 			//	$_SESSION['nom'] = $unUser['nom'];
 			//	$_SESSION['prenom'] = $unUser['prenom'];
 				$_SESSION['role'] = $unUser['role'];
-				header("Location: connexion.php");
+			    header("Location: connexion.php");
 			}else{
 				echo "<br/> Vérifiez vos identifiants";
 			}
@@ -60,54 +61,56 @@
 		{
 			echo "<br/><h1>SESSION : ".$_SESSION['email']."</h1><br/>";
 			echo '
-
 		<a href="connexion.php?page=0">
-			<img src="images/home.png" height="100" width="100">
+			<img src="images/home.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=1">
-			<img src="images/centre.png" height="100" width="100">
+			<img src="images/centre.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=2">
-			<img src="images/type.png" height="100" width="100">
+			<img src="images/type.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=3">
-			<img src="images/patient.png" height="100" width="100">
+			<img src="images/patient.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=4">
-			<img src="images/vaccin.png" height="100" width="100">
+			<img src="images/vaccin.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=5">
-			<img src="images/vaccination.png" height="100" width="100">
+			<img src="images/vaccination.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=6">
-			<img src="images/vaccination.png" height="100" width="100">
+			<img src="images/vaccination.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=7">
-			<img src="images/vaccination.png" height="100" width="100">
+			<img src="images/vaccination.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=8">
-			<img src="images/vaccination.png" height="100" width="100">
+			<img src="images/vaccination.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=9">
-			<img src="images/vaccination.png" height="100" width="100">
+			<img src="images/vaccination.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=10">
-			<img src="images/vaccination.png" height="100" width="100">
+			<img src="images/vaccination.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=11">
-			<img src="images/vaccination.png" height="100" width="100">
+			<img src="images/vaccination.png" height="70" width="70">
 		</a>
 		<a href="connexion.php?page=20">
-			<img src="images/deconnection.jpg" height="100" width="100">
+			<img src="images/deconnection.jpg" height="70" width="70">
 		</a>
 		';
 
 			if(isset($_GET['page']))
 			{
-				$page = $_GET['page'];
+				$page = $_GET['page']; 
 			}else{
 				$page = 0;
 			}
+			echo "<br/><h1>******** page : ".$page."</h1><br/>";
+			
+
 			switch ($page) {
 				case 0: require_once ("home.php"); break;
 				case 1: require_once ("gestion_centres.php"); break;
